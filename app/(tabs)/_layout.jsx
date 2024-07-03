@@ -49,7 +49,7 @@ const TabsLayout = () => {
               case 'home':
                 IconComponent = focused ? Active_Home : Home;
                 break;
-              case 'booking':
+              case 'transaction':
                 IconComponent = focused ? Active_Booking : Booking;
                 break;
               case 'wallet':
@@ -74,9 +74,9 @@ const TabsLayout = () => {
           }}
         />
          <Tabs.Screen
-          name="booking"
+          name="transaction"
           options={{
-            title: 'Booking',
+            title: 'Transaction',
           }}
         />
         <Tabs.Screen

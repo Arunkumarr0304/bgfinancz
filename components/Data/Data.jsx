@@ -29,6 +29,9 @@ import Card1 from "../../assets/images/Card1.png";
 import Card2 from "../../assets/images/Card2.png";
 import Card3 from "../../assets/images/Card3.png";
 
+import Credit from "../../assets/images/credit.svg";
+import Debit from "../../assets/images/debit.svg";
+
 export const pages = [
     {
         id: 1,
@@ -188,3 +191,118 @@ export const swipper_data = [
         balance: '$3.469.52',
     },
 ]
+
+export const duration_data = [
+    {
+        id: 1,
+        time: 'D',
+    },
+    {
+        id: 2,
+        time: 'W',
+    },
+    {
+        id: 3,
+        time: 'M',
+    },
+    {
+        id: 4,
+        time: 'Y',
+    },
+]
+
+export const progressive_days = [
+    {
+        id: 1,
+        time: 'Sun',
+        percentage: 70,
+        color: '#3629B7',
+    },
+    {
+        id: 2,
+        time: 'Mon',
+        percentage: 50,
+        color: '#0890FE',
+    },
+    {
+        id: 3,
+        time: 'Tue',
+        percentage: 60,
+        color: '#3629B7',
+    },
+    {
+        id: 4,
+        time: 'Wed',
+        percentage: 40,
+        color: '#0890FE',
+    },
+    {
+        id: 5,
+        time: 'Thu',
+        percentage: 80,
+        color: '#3629B7',
+    },
+    {
+        id: 6,
+        time: 'Fri',
+        percentage: 90,
+        color: '#0890FE',
+    },
+    {
+        id: 7,
+        time: 'Sat',
+        percentage: 30,
+        color: '#3629B7',
+    },
+];
+
+
+export const transaction_tabs = [
+    {
+        id: 1,
+        icon: <Credit />,
+        text: 'Credited',
+        price: '$564,30',
+    },
+    {
+        id: 2,
+        icon: <Debit />,
+        text: 'Debited',
+        price: '$564,30',
+    },
+]
+
+export const donet_datas = [
+    {
+        id: 1,
+        text: 'Foods',
+        color: '#E7E7E7',
+    },
+    {
+        id: 2,
+        text: 'Shopping',
+        color: '#FB6B18',
+    },
+    {
+        id: 3,
+        text: 'Topup',
+        color: '#0890FE',
+    },
+    {
+        id: 4,
+        text: 'Bills',
+        color: '#FF4267',
+    },
+]
+
+export const options = [
+    {
+      id: 0,
+      option: "VISA **** **** **** 1234", 
+    },
+    {
+      id: 1,
+      option: "VISA **** **** **** 1234",
+    },
+  ];
+  

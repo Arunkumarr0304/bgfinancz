@@ -6,8 +6,13 @@ import { Lato_400Regular } from '@expo-google-fonts/lato';
 import { Cabin_700Bold } from '@expo-google-fonts/cabin';
 import { categories, last_transaction, send_money, swipper_data } from '../../components/Data/Data';
 import CustomSwiper from '../../components/Swiper/Swiper';
+import { router, Link } from "expo-router";
+import Common_tabs from '../../components/Tabs/common_tabs';
 
 const Home = () => {
+  const transfer = () => {
+    router.push("/Transfer/Transfer");
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -26,7 +31,7 @@ const Home = () => {
       <CustomSwiper data={swipper_data} />
         <View style={styles.tab_container}>
           {categories.map((d) => (
-            <TouchableOpacity style={styles.tab} key={d.id}>
+            <TouchableOpacity style={styles.tab} key={d.id} onPress={transfer}>
               {d.icon}
               <Text style={styles.tab_text}>{d.names}</Text>
             </TouchableOpacity>
@@ -50,20 +55,7 @@ const Home = () => {
           </View>
         </ScrollView>
         <Text style={styles.title}>Last Transaction</Text>
-        <View style={styles.transaction_container}>
-          {last_transaction.map((d) => (
-            <TouchableOpacity style={styles.stack} key={d.id}>
-              <View style={styles.stack_left}>
-                {d.image}
-                <View style={styles.stack_column}>
-                  <Text style={styles.stack_name}>{d.heading}</Text>
-                  <Text style={styles.date}>{d.date}</Text>
-                </View>
-              </View>
-              <Text style={[styles.amount, { color: d.amount.startsWith('+') ? '#16C813' : '#EC1C24' }]}>{d.amount}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+            <Common_tabs />
       </ScrollView>
     </View>
   )
@@ -196,43 +188,5 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginTop: -5,
   },
-  transaction_container: {
-    gap: 10,
-    paddingVertical: 26,
-    marginBottom: 50,
-  },
-  stack: {
-    borderWidth: 1,
-    borderColor: '#BABABA',
-    borderRadius: 5,
-    padding: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  stack_left: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-  },
-  stack_column: {
-    gap: 2,
-  },
-  stack_name: {
-    fontSize: 14,
-    lineHeight: 24,
-    fontFamily: 'Cabin_700Bold',
-    color: '#000000',
-  },
-  date: {
-    fontSize: 12,
-    lineHeight: 16,
-    fontFamily: 'Lato_400Regular',
-    color: '#757575',
-  },
-  amount: {
-    fontSize: 14,
-    lineHeight: 24,
-    fontFamily: 'Cabin_700Bold',
-  },
+  
 });
