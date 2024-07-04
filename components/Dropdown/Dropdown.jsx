@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import Drop from "../../assets/images/dropdown_vector.svg";
+
+const { height: SCREEN_HEIGHT } = Dimensions.get('window');
+const MAX_DROPDOWN_HEIGHT = SCREEN_HEIGHT * 0.5; // 50% of the screen height
 
 const CustomDropdown = ({ options, selectedValue, onValueChange }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +20,7 @@ const CustomDropdown = ({ options, selectedValue, onValueChange }) => {
         <Drop style={styles.drop} />
       </TouchableOpacity>
       {isOpen && (
-        <View style={styles.dropdownList}>
+        <View style={[styles.dropdownList, { maxHeight: MAX_DROPDOWN_HEIGHT }]}>
           <ScrollView>
             {options.map((option) => (
               <TouchableOpacity
@@ -40,26 +43,29 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   dropdown: {
-    padding: 10,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
     borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    backgroundColor: '#fff',
+    borderColor: '#F6F6F6',
+    borderRadius: 10,
+    backgroundColor: '#F6F6F6',
     position: 'relative',
   },
   drop: {
     position: 'absolute',
-    bottom: 18,
-    right: 10,
+    bottom: 20,
+    right: 12,
   },
   dropdownText: {
-    fontSize: 16,
+    fontSize: 14,
+    lineHeight: 24,
+    fontFamily: 'Lato_400Regular',
+    color: '#757575',
   },
   dropdownList: {
     position: 'absolute',
     top: 50,
     width: '100%',
-    maxHeight: 200,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
@@ -70,7 +76,10 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   dropdownItemText: {
-    fontSize: 16,
+    fontSize: 14,
+    lineHeight: 24,
+    fontFamily: 'Lato_400Regular',
+    color: '#757575',
   },
 });
 

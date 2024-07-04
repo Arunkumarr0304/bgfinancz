@@ -32,6 +32,16 @@ import Card3 from "../../assets/images/Card3.png";
 import Credit from "../../assets/images/credit.svg";
 import Debit from "../../assets/images/debit.svg";
 
+import Trans1 from "../../assets/images/trans1.svg";
+import Trans2 from "../../assets/images/trans2.svg";
+import Trans3 from "../../assets/images/trans3.svg";
+import Active_Trans1 from "../../assets/images/active_trans1.svg";
+import Active_Trans2 from "../../assets/images/active_trans2.svg";
+import Active_Trans3 from "../../assets/images/active_trans3.svg";
+
+import Beneficar1 from "../../assets/images/beneficar1.png";
+import Beneficar2 from "../../assets/images/beneficar2.png";
+
 export const pages = [
     {
         id: 1,
@@ -306,3 +316,120 @@ export const options = [
     },
   ];
   
+
+  export const trans_data = [
+    {
+        id: 1,
+        icon: <Trans1 />,
+        active: <Active_Trans1 />,
+        text: 'Transfer via card number',
+    },
+    {
+        id: 2,
+        icon: <Trans2 />,
+        active: <Active_Trans2 />,
+        text: 'Transfer to the same bank',
+    },
+    {
+        id: 3,
+        icon: <Trans3 />,
+        active: <Active_Trans3 />,
+        text: 'Transfer to another bank',
+    },
+  ]
+
+
+  export const beneficar_data = [
+     {
+        id: 1,
+        image: Beneficar1,
+        name: 'Emma',
+     },
+     {
+        id: 2,
+        image: Beneficar2,
+        name: 'Justin',
+     },
+  ]
+
+
+  export const text_data = [
+    {
+        id: 1,
+        key: 'number-pad',
+        placeholder: 'enter the number',
+        label: 'card no'
+    },
+    {
+        id: 2,
+        key: 'number-pad',
+        placeholder: 'enter the amount',
+        label: 'amount',
+    },
+    {
+        id: 3,
+        key: 'number-pad',
+        placeholder: 'enter the amount',
+        label: 'confirm amount',
+    },
+  ]
+
+  
+  export const options2 = [
+    {
+      id: 0,
+      option: "JPMorgan Chase", 
+    },
+    {
+      id: 1,
+      option: "	Bank of America",
+    },
+    {
+        id: 2,
+        option: "Citigroup",
+      },
+      {
+        id: 3,
+        option: "Wells Fargo",
+      },
+      {
+        id: 4,
+        option: "Goldman Sachs",
+      },
+
+  ];
+  
+
+  export const text_data2 = [
+    {
+        id: 1,
+        key: 'number-pad',
+        placeholder: 'enter the account number',
+        label: 'From'
+    },
+    {
+        id: 2,
+        key: 'number-pad',
+        placeholder: 'enter the account amount',
+        label: 'To',
+    },
+    {
+        id: 3,
+        key: 'number-pad',
+        placeholder: 'enter the card number',
+        label: 'Card Number',
+    },
+    {
+        id: 4,
+        key: 'number-pad',
+        placeholder: 'enter amount',
+        label: 'Transaction Fees',
+    },
+    {
+        id: 5,
+        key: 'number-pad',
+        placeholder: 'enter amount',
+        label: 'Amount',
+    },
+  
+  ]

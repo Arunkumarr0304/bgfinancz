@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import React from 'react';
 import Profile from "../../assets/images/home_profile.png";
-import Notification from "../../assets/images/Notification.svg";
+import Notification from "../../assets/images/Qr_scan.svg";
 import { Lato_400Regular } from '@expo-google-fonts/lato';
 import { Cabin_700Bold } from '@expo-google-fonts/cabin';
 import { categories, last_transaction, send_money, swipper_data } from '../../components/Data/Data';
@@ -13,6 +13,9 @@ const Home = () => {
   const transfer = () => {
     router.push("/Transfer/Transfer");
   };
+  const code = () => {
+    router.push('/Qr_code/Qr_code');
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -23,7 +26,7 @@ const Home = () => {
             <Text style={styles.name}>Hi, Satoru Gojo</Text>
           </View>
         </View>
-        <TouchableOpacity style={styles.Notification}>
+        <TouchableOpacity style={styles.Notification} onPress={code}>
           <Notification width={24} height={24} />
         </TouchableOpacity>
       </View>
@@ -86,7 +89,7 @@ const styles = StyleSheet.create({
     gap: 3,
   },
   Notification: {
-    backgroundColor: '#FFAF2A',
+    backgroundColor: '#0890FE',
     borderRadius: 8,
     padding: 10,
   },
