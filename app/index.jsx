@@ -9,6 +9,7 @@ import { useFonts } from 'expo-font';
 import Pagination from "../components/Pagination/Pagination";
 import { Cabin_400Regular, Cabin_500Medium, Cabin_600SemiBold, Cabin_700Bold } from "@expo-google-fonts/cabin";
 import { Lato_400Regular, Lato_700Bold } from "@expo-google-fonts/lato";
+import ThemeContext from "../theme/ThemeContext";
 
 
 
@@ -17,6 +18,7 @@ const { width } = Dimensions.get('window');
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  const { theme,  darkMode } = useContext(ThemeContext);
   const navigation = useNavigation();
   const swiperRef = useRef(null);
   const totalPages = pages.length;
@@ -76,8 +78,12 @@ export default function App() {
   }
 
   return (
-    <View style={[styles.safearea]} onLayout={onLayoutRootView}>
-     
+    <View style={[styles.safearea, {backgroundColor:theme.background}]} onLayout={onLayoutRootView}>
+          <StatusBar 
+        translucent
+        backgroundColor="transparent"
+        barStyle={darkMode ? "light-content" : "dark-content"} 
+      />
       <ScrollView
         horizontal
         pagingEnabled
@@ -100,7 +106,7 @@ export default function App() {
       <Animated.View style={{ opacity: paginationOpacity }}>
           <Pagination activePageIndex={activePageIndex} totalPages={totalPages} />
         </Animated.View>
-        <Animated.Text style={[[styles.heading], { opacity: headingOpacity }]}>
+        <Animated.Text style={[[styles.heading, {color:theme.color}], { opacity: headingOpacity }]}>
           {pages[activePageIndex].heading}
         </Animated.Text>
         <Animated.Text style={[styles.description, { opacity: descriptionOpacity }]}>

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, TextInput, Image } from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Cabin_600SemiBold, Cabin_700Bold } from '@expo-google-fonts/cabin';
 import { beneficar_data, options2, text_data } from '../Data/Data';
 import { Lato_400Regular } from '@expo-google-fonts/lato';
@@ -7,10 +7,17 @@ import CustomDropdown from '../Dropdown/Dropdown';
 import CustomCheckbox from '../custom_checkbox/custom_checkbox';
 import Button from "../../components/Button/Button";
 import { router, Link } from "expo-router";
+import ThemeContext from '../../theme/ThemeContext';
 
 const Transfer_section3 = () => {
   const [selectedValue, setSelectedValue] = useState(options2[0]);
   const [isChecked, setIsChecked] = useState(false);
+  const [activestack, setActive_stack] = useState(beneficar_data[0].id)
+  const { theme,  darkMode } = useContext(ThemeContext);
+
+  const beneficar = (id) => {
+    setActive_stack(id);
+  };
 
   const handleToggleCheckbox = () => {
     setIsChecked(!isChecked);
@@ -22,7 +29,7 @@ const Transfer_section3 = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Choose Beneficiary</Text>
+      <Text style={[styles.heading, {color:theme.color}]}>Choose Beneficiary</Text>
       <ScrollView horizontal={true} style={styles.scroll}>
         <TouchableOpacity style={styles.stack1}>
           <View style={styles.add}>
@@ -31,15 +38,15 @@ const Transfer_section3 = () => {
         </TouchableOpacity>
         <View style={styles.stack_container}>
           {beneficar_data.map((d) => (
-            <TouchableOpacity style={styles.stack} key={d.id}>
+            <TouchableOpacity style={[styles.stack, activestack === d.id && styles.activestack]} key={d.id} onPress={() => {beneficar(d.id)}}>
               <Image source={d.image} alt='image' style={styles.image} />
-              <Text style={styles.stack_text}>{d.name}</Text>
+              <Text style={[styles.stack_text, activestack === d.id && styles.active_stack_text]}>{d.name}</Text>
             </TouchableOpacity>
           ))}
         </View>
       </ScrollView>
       <View style={styles.input_box}>
-        <Text style={styles.label}>Select the bank</Text>
+        <Text style={[styles.label, {color:theme.color}]}>Select the bank</Text>
         <CustomDropdown
           options={options2}
           selectedValue={selectedValue}
@@ -49,15 +56,15 @@ const Transfer_section3 = () => {
       <View style={styles.input_container}>
         {text_data.map((d) => (
           <View style={styles.input_box} key={d.id}>
-            <Text style={styles.label}>{d.label}</Text>
-            <TextInput keyboardType={d.key} style={styles.input} placeholder={d.placeholder} />
+            <Text style={[styles.label, {color:theme.color}]}>{d.label}</Text>
+            <TextInput keyboardType={d.key} style={[styles.input, {backgroundColor:theme.cardbg3, color:theme.color}]} placeholder={d.placeholder} placeholderTextColor={darkMode? '#ffffff' : '#000000'} />
           </View>
         ))}
       </View>
       <Text style={styles.entered_amount}>One thousand dollar</Text>
       <View style={styles.check_row}>
         <CustomCheckbox isChecked={isChecked} onToggle={handleToggleCheckbox} />
-        <Text style={styles.check_text}>Save to directory of beneficiary</Text>
+        <Text style={[styles.check_text, {color:theme.color2}]}>Save to directory of beneficiary</Text>
       </View>
         <Button  buttonText="confirm" onPress={transfer} />
     </View>
@@ -120,6 +127,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#f6f6f6',
     borderRadius: 15,
   },
+  activestack: {
+    backgroundColor: '#0890FE',
+  },
   image: {
     width: 60,
     height: 60,
@@ -129,6 +139,9 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontFamily: 'Lato_400Regular',
     color: '#343434',
+  },
+  active_stack_text: {
+    color: '#ffffff',
   },
   input_container: {
     gap: 16,

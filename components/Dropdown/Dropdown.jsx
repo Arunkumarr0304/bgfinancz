@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import Drop from "../../assets/images/dropdown_vector.svg";
+import ThemeContext from '../../theme/ThemeContext';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 const MAX_DROPDOWN_HEIGHT = SCREEN_HEIGHT * 0.5; // 50% of the screen height
 
 const CustomDropdown = ({ options, selectedValue, onValueChange }) => {
+  const { theme,  darkMode } = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelect = (value) => {
@@ -15,8 +17,8 @@ const CustomDropdown = ({ options, selectedValue, onValueChange }) => {
 
   return (
     <View style={styles.dropdownContainer}>
-      <TouchableOpacity style={styles.dropdown} onPress={() => setIsOpen(!isOpen)}>
-        <Text style={styles.dropdownText}>{selectedValue.option}</Text>
+      <TouchableOpacity style={[styles.dropdown, {backgroundColor:theme.cardbg}]} onPress={() => setIsOpen(!isOpen)}>
+        <Text style={[styles.dropdownText, {color:theme.color3}]}>{selectedValue.option}</Text>
         <Drop style={styles.drop} />
       </TouchableOpacity>
       {isOpen && (
@@ -25,10 +27,10 @@ const CustomDropdown = ({ options, selectedValue, onValueChange }) => {
             {options.map((option) => (
               <TouchableOpacity
                 key={option.id}
-                style={styles.dropdownItem}
+                style={[styles.dropdownItem, {backgroundColor:theme.cardbg}]}
                 onPress={() => handleSelect(option)}
               >
-                <Text style={styles.dropdownItemText}>{option.option}</Text>
+                <Text style={[styles.dropdownItemText, {color:theme.color3}]}>{option.option}</Text>
               </TouchableOpacity>
             ))}
           </ScrollView>

@@ -1,3 +1,4 @@
+// components/Qr_scanner/Qr_scanner.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { Camera } from 'expo-camera';
@@ -33,7 +34,7 @@ const QRScanner = ({ onScanned }) => {
       <Camera
         ref={cameraRef}
         style={styles.camera}
-        type={Camera.Constants.Type.back} // Check this line
+        type={Camera.Constants.Type.back}
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
       />
       {scanned && (

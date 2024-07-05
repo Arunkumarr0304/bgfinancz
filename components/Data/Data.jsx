@@ -28,6 +28,7 @@ import Paypal from "../../assets/images/paypal.svg";
 import Card1 from "../../assets/images/Card1.png";
 import Card2 from "../../assets/images/Card2.png";
 import Card3 from "../../assets/images/Card3.png";
+import Card4 from "../../assets/images/Card4.png";
 
 import Credit from "../../assets/images/credit.svg";
 import Debit from "../../assets/images/debit.svg";
@@ -41,6 +42,18 @@ import Active_Trans3 from "../../assets/images/active_trans3.svg";
 
 import Beneficar1 from "../../assets/images/beneficar1.png";
 import Beneficar2 from "../../assets/images/beneficar2.png";
+
+import Profile1 from "../../assets/images/profile1.svg";
+import Profile2 from "../../assets/images/profile2.svg";
+import Profile3 from "../../assets/images/profile3.svg";
+import Profile4 from "../../assets/images/profile4.svg";
+import Profile5 from "../../assets/images/profile5.svg";
+
+import Dark_profile1 from "../../assets/images/dark_profile1.svg";
+import Dark_profile2 from "../../assets/images/dark_profile2.svg";
+import Dark_profile3 from "../../assets/images/dark_profile3.svg";
+import Dark_profile4 from "../../assets/images/dark_profile4.svg";
+import Dark_profile5 from "../../assets/images/dark_profile5.svg";
 
 export const pages = [
     {
@@ -178,7 +191,7 @@ export const swipper_data = [
         image: Card1,
         name: 'Satoru Gojo',
         type: 'Amazon Platinium',
-        card_no: '4756 .... .... 9018',
+        card_no: '4756  . . . .   . . . .  9018',
         expire: '11/24',
         balance: '$3.469.52',
     },
@@ -187,7 +200,7 @@ export const swipper_data = [
         image: Card2,
         name: 'Satoru Gojo',
         type: 'Amazon Platinium',
-        card_no: '4756 .... .... 9018',
+        card_no: '4756  . . . .   . . . .  9018',
         expire: '11/24',
         balance: '$3.469.52',
     },
@@ -196,12 +209,31 @@ export const swipper_data = [
         image: Card3,
         name: 'Satoru Gojo',
         type: 'Amazon Platinium',
-        card_no: '4756 .... .... 9018',
+        card_no: '4756  . . . .   . . . .  9018',
         expire: '11/24',
         balance: '$3.469.52',
     },
 ]
-
+export const swipper_data2 = [
+    {
+        id: 1,
+        image: Card1,
+        name: 'Satoru Gojo',
+        type: 'Amazon Platinium',
+        card_no: '4756  . . . .   . . . .  9018',
+        expire: '11/24',
+        balance: '$3.469.52',
+    },
+    {
+        id: 2,
+        image: Card4,
+        name: 'Satoru Gojo',
+        type: 'Amazon Platinium',
+        card_no: '4756  . . . .   . . . .  9018',
+        expire: '11/24',
+        balance: '$3.469.52',
+    },
+]
 export const duration_data = [
     {
         id: 1,
@@ -433,3 +465,37 @@ export const options = [
     },
   
   ]
+
+  export const profile_data = [
+    {
+        id: 1,
+        icon: <Profile1 />,
+        active_icon: <Dark_profile1 />,
+        name: 'Edit Profile',
+    },
+    {
+        id: 2,
+        icon: <Profile2 />,
+        active_icon: <Dark_profile2 />,
+        name: 'Your favorite songs',
+    },
+
+    {
+        id: 3,
+        icon: <Profile3 />,
+        active_icon: <Dark_profile3 />,
+        name: 'Dark Mode',
+    },
+    {
+        id: 4,
+        icon: <Profile4 />,
+        active_icon: <Dark_profile4 />,
+        name: 'Help & Support',
+    },
+    {
+        id: 5,
+        icon: <Profile5 />,
+        active_icon: <Dark_profile5 />,
+        name: 'Language',
+    },
+]

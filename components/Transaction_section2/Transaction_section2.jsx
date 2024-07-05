@@ -1,22 +1,24 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import { last_transaction, transaction_tabs } from '../Data/Data';
 import { Cabin_700Bold } from '@expo-google-fonts/cabin';
 import { Lato_400Regular } from '@expo-google-fonts/lato';
+import ThemeContext from '../../theme/ThemeContext';
 
 const Transaction_section2 = () => {
+    const { theme,  darkMode } = useContext(ThemeContext);
   return (
     <View style={styles.container}>
       <View style={styles.tab1_container}>
             {
                 transaction_tabs.map((d) => (
-                    <TouchableOpacity style={styles.tab} key={d.id}>
-                        <View style={styles.icon}>
+                    <TouchableOpacity style={[styles.tab, {backgroundColor:theme.cardbg3}]} key={d.id}>
+                        <View style={[styles.icon, {backgroundColor:theme.cardbg2}]}>
                         {d.icon}
                         </View>
-                        <View style={styles.text_column}>
-                        <Text style={styles.price}>{d.price}</Text>
-                        <Text style={styles.tab_text}>{d.text}</Text>
+                        <View style={[styles.text_column]}>
+                        <Text style={[styles.price, {color:theme.color}]}>{d.price}</Text>
+                        <Text style={[styles.tab_text, {color:theme.color3}]}>{d.text}</Text>
                         </View>
                     </TouchableOpacity>
                 ))

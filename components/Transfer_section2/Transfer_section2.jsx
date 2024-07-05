@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { Cabin_700Bold } from '@expo-google-fonts/cabin';
 import { trans_data } from '../Data/Data';
 import { Lato_400Regular } from '@expo-google-fonts/lato';
+import ThemeContext from '../../theme/ThemeContext';
 
 
 const Transfer_section2 = () => {
+  const { theme,  darkMode } = useContext(ThemeContext);
 const [active_stack, setActive_stack] = useState(trans_data[0].id);
 
 const click = (id) => {
@@ -13,14 +15,14 @@ const click = (id) => {
 };
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Choose Transaction</Text>
+      <Text style={[styles.heading, {color:theme.color}]}>Choose Transaction</Text>
         {/* <ScrollView horizontal={true} > */}
       <View style={styles.stack_container}>
         {
           trans_data.map((d) => (
-            <TouchableOpacity style={[styles.stack, active_stack === d.id && styles.active_stack]} key={d.id} onPress={() => click(d.id)}>
+            <TouchableOpacity style={[[styles.stack, {backgroundColor:theme.cardbg3}], active_stack === d.id && styles.active_stack]} key={d.id} onPress={() => click(d.id)}>
               {active_stack === d.id ? d.active : d.icon}
-              <Text style={[styles.stack_text, active_stack === d.id && styles.active_stack_text]}>{d.text}</Text>
+              <Text style={[[styles.stack_text], active_stack === d.id && styles.active_stack_text]}>{d.text}</Text>
             </TouchableOpacity>
           ))
         }
@@ -45,7 +47,7 @@ const styles = StyleSheet.create({
         textTransform:  'capitalize',
     },
     stack_container: {
-      gap: 15,
+      gap: 11,
       flexDirection: 'row',
       alignItems: 'center',
       marginVertical: 16,

@@ -1,8 +1,10 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import { last_transaction } from '../Data/Data';
+import ThemeContext from '../../theme/ThemeContext';
 
 const Common_tabs = () => {
+  const { theme,  darkMode } = useContext(ThemeContext);
   return (
     <View style={styles.container}>
       <View style={styles.transaction_container}>
@@ -11,7 +13,7 @@ const Common_tabs = () => {
               <View style={styles.stack_left}>
                 {d.image}
                 <View style={styles.stack_column}>
-                  <Text style={styles.stack_name}>{d.heading}</Text>
+                  <Text style={[styles.stack_name, {color:theme.color}]}>{d.heading}</Text>
                   <Text style={styles.date}>{d.date}</Text>
                 </View>
               </View>

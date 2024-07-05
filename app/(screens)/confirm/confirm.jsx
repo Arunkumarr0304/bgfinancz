@@ -1,15 +1,21 @@
 import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Back from "../../../assets/images/Back.svg";
+import Dark_back from "../../../assets/images/White_back.svg";
 import { Cabin_700Bold } from '@expo-google-fonts/cabin';
 import { Lato_400Regular } from '@expo-google-fonts/lato';
 import Button from '../../../components/Button/Button';
 import { text_data2 } from '../../../components/Data/Data';
 import { router, Link } from "expo-router";
+import ThemeContext from '../../../theme/ThemeContext';
 
 const Confirm = () => {
   const [otp, setOtp] = useState('');
+  const { theme,  darkMode } = useContext(ThemeContext);
 
+  const back = () => {
+    router.push('/Transfer/Transfer');
+  };
   const handleGetOtp = () => {
     console.log('OTP requested');
   };
@@ -19,25 +25,27 @@ const Confirm = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor:theme.background}]}>
       <View style={styles.header}>
-        <Back />
-        <Text style={styles.heading}>Confirm</Text>
+       <TouchableOpacity onPress={back}>
+       {darkMode? <Dark_back /> :  <Back />}
+       </TouchableOpacity>
+        <Text style={[styles.heading, {color:theme.color}]}>Confirm</Text>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.confirm_text}>Confirm Transaction Information From</Text>
         <View style={styles.input_container}>
           {text_data2.map((d) => (
             <View style={styles.input_box} key={d.id}>
-              <Text style={styles.label}>{d.label}</Text>
-              <TextInput keyboardType={d.key} style={styles.input} placeholder={d.placeholder} />
+              <Text style={[styles.label, {color:theme.color}]}>{d.label}</Text>
+              <TextInput keyboardType={d.key} style={[styles.input, {backgroundColor:theme.cardbg, color:theme.color}]} placeholder={d.placeholder} placeholderTextColor={darkMode? '#ffffff' : '#000000'} />
             </View>
           ))}
         </View>
         <View style={styles.otp_container}>
         <View style={styles.input_box}>
-              <Text style={styles.label2}>Get OTP to verify transaction</Text>
-              <TextInput keyboardType='number-pad' style={styles.input1} placeholder="OTP" />
+              <Text style={[styles.label2, {color:theme.color}]}>Get OTP to verify transaction</Text>
+              <TextInput keyboardType='number-pad' style={[styles.input1, {backgroundColor:theme.cardbg, color:theme.color}]} placeholder="OTP" placeholderTextColor={darkMode? '#ffffff' : '#000000'} />
             </View>
           <Button buttonText="Get OTP" onPress={handleGetOtp}  />
         </View>

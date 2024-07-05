@@ -1,27 +1,33 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView} from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import Back from "../../../assets/images/Back.svg";
+import Dark_back from "../../../assets/images/White_back.svg";
 import { Cabin_700Bold } from '@expo-google-fonts/cabin';
 import success from "../../../assets/images/successful.png";
 import { Lato_400Regular, Lato_700Bold } from '@expo-google-fonts/lato';
 import Button from '../../../components/Button/Button';
 import { router, Link } from "expo-router";
+import ThemeContext from '../../../theme/ThemeContext';
 
 const Success = () => {
-
+  const { theme,  darkMode } = useContext(ThemeContext);
     const gohome = () => {
         router.push('home');
     };
-
+    const back = () => {
+      router.push('/confirm/confirm');
+    };
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor:theme.background}]}>
       <View style={styles.header}>
-        <Back />
-        <Text style={styles.heading}>Successfully</Text>
+      <TouchableOpacity onPress={back}>
+       {darkMode? <Dark_back /> :  <Back />}
+       </TouchableOpacity>
+        <Text style={[styles.heading, {color:theme.color}]}>Successfully</Text>
       </View>
       <View style={styles.content}>
         <Image style={styles.image} source={success} alt='image' />
-        <Text style={styles.head}>Transfer Successful</Text>
+        <Text style={[styles.head, {color:theme.color}]}>Transfer Successful</Text>
         <Text style={styles.head_text}>You have successfully transferred<Text style={styles.color}> $1,000 </Text>to<Text style={styles.color}> Emma Watson</Text></Text>
       </View>
       <View style={styles.button_box}>

@@ -1,12 +1,14 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Cabin_700Bold } from '@expo-google-fonts/cabin';
 import { Lato_400Regular } from '@expo-google-fonts/lato';
 import { duration_data, progressive_days } from '../../components/Data/Data';
 import ProgressiveBar from '../Progressive_bar/Progressive_bar';
+import ThemeContext from '../../theme/ThemeContext';
 
 
 const Progressive = () => {
+    const { theme,  darkMode } = useContext(ThemeContext);
     const [activecircle, setActivecircle] = useState(duration_data[0].id);
 
     const click = (id) => {
@@ -17,7 +19,7 @@ const Progressive = () => {
         <View style={styles.container}>
             <View style={styles.balance_row}>
                 <View style={styles.balance_column1}>
-                    <Text style={styles.balance}>Total Balance</Text>
+                    <Text style={[styles.balance, {color:theme.color3}]}>Total Balance</Text>
                     <Text style={styles.amount}>$3,469.52</Text>
                 </View>
                 <View style={styles.duration_container}>
@@ -39,14 +41,14 @@ const Progressive = () => {
                     {progressive_days.map((d) => (
                         <View style={styles.progress_column} key={d.id}>
                             <ProgressiveBar percentage={d.percentage} color={d.color} />
-                            <Text style={styles.days}>{d.time}</Text>
+                            <Text style={[styles.days, {color:theme.color3}]}>{d.time}</Text>
                         </View>
                     ))}
                 </View>
                 <View style={styles.amount_column}>
-                    <Text style={styles.price}>$320</Text>
-                    <Text style={styles.price}>$110</Text>
-                    <Text style={styles.starting_price}>$0</Text>
+                    <Text style={[styles.price, {color:theme.color3}]}>$320</Text>
+                    <Text style={[styles.price, {color:theme.color3}]}>$110</Text>
+                    <Text style={[styles.starting_price, {color:theme.color3}]}>$0</Text>
                 </View>
             </View>
         </View>
@@ -130,6 +132,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap: 17,
         paddingTop: 10,
+        paddingLeft: 4,
     },
     price: {
         fontSize: 14,

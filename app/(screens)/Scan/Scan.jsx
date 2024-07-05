@@ -1,35 +1,35 @@
-import React from 'react';
+// screens/Scan/Scan.jsx
+import React, { useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import Back from "../../../assets/images/Back.svg";
+import Dark_back from "../../../assets/images/White_back.svg";
 import Code from "../../../assets/images/Qr_scan.svg";
 import { router } from "expo-router";
 import { Cabin_700Bold } from '@expo-google-fonts/cabin';
-import QRScanner from '../../../components/Qr_scanner/Qr_scanner';
+import ThemeContext from '../../../theme/ThemeContext';
+
 
 const Scan = () => {
+  const { theme,  darkMode } = useContext(ThemeContext);
   const scans = () => {
     router.push('/Qr_code/Qr_code');
   };
 
-  const handleScanned = ({ type, data }) => {
-    Alert.alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-  };
-
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor:theme.background}]}>
       <View style={styles.header}>
         <View style={styles.header_left}>
           <TouchableOpacity onPress={scans}>
-            <Back />
+          {darkMode? <Dark_back /> :  <Back />}
           </TouchableOpacity>
-          <Text style={styles.heading}>Scan</Text>
+          <Text style={[styles.heading, {color:theme.color}]}>Scan</Text>
         </View>
-        <TouchableOpacity style={styles.scan} onPress={scans}>
+        <TouchableOpacity style={[styles.scan, {backgroundColor:theme.background2}]} onPress={scans}>
           <Code width={24} height={24} />
         </TouchableOpacity>
       </View>
       <View style={styles.scanner_container}>
-        <QRScanner onScanned={handleScanned} />
+       
       </View>
     </View>
   );

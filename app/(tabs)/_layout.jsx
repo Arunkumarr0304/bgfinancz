@@ -10,20 +10,28 @@ import Active_Wallet from "../../assets/images/active_wallet.svg";
 import Active_Booking from "../../assets/images/active_booking.svg";
 import Active_Profile from "../../assets/images/active_profile.svg";
 import { Cabin_500Medium, Cabin_700Bold } from '@expo-google-fonts/cabin';
+import ThemeContext from '../../theme/ThemeContext';
+import Dark_active1 from "../../assets/images/dark_active_profile1.svg";
+import Dark_active2 from "../../assets/images/dark_active_profile2.svg";
+import Dark_active3 from "../../assets/images/dark_active_profile3.svg";
+import Dark_active4 from "../../assets/images/dark_active_profile4.svg";
 
 
 const TabBarButton = ({ children, onPress, accessibilityState, title }) => {
+  const { theme,  darkMode } = useContext(ThemeContext);
+
   const isSelected = accessibilityState.selected;
   return (
     <TouchableOpacity
       onPress={onPress}
       style={[
         styles.tabButton,
-        isSelected ? styles.activeTabButton : null,
+        isSelected ? [styles.activeTabButton] : null,
+      
       ]}
     >
       {children}
-      <Text style={[styles.tabTitle, isSelected ? styles.activeTabTitle : styles.tabTitle]}>
+      <Text style={[styles.tabTitle, isSelected ? [styles.activeTabTitle, {color:theme.bordercolor}] : styles.tabTitle]}>
         {title}
       </Text>
     </TouchableOpacity>
@@ -31,39 +39,62 @@ const TabBarButton = ({ children, onPress, accessibilityState, title }) => {
 };
 
 const TabsLayout = () => {
-  
+  const { theme,  darkMode } = useContext(ThemeContext);
+
   return (
-    <View style={[styles.container]}>
+<View style={[styles.container, { backgroundColor: theme.background }]}>
       <Tabs
         screenOptions={({ route }) => ({
           tabBarShowLabel: false,
           tabBarButton: (props) => (
             <TabBarButton {...props} title={route.name} />
           ),
-          tabBarStyle: [styles.tabBar],
+          tabBarStyle: [styles.tabBar, { backgroundColor: theme.cardbg }],
           headerShown: false,
           tabBarIcon: ({ focused }) => {
             let IconComponent;
-
+            if (focused) {
             switch (route.name) {
               case 'home':
-                IconComponent = focused ? Active_Home : Home;
+                IconComponent =  darkMode? Dark_active1 : Active_Home;
                 break;
               case 'transaction':
-                IconComponent = focused ? Active_Booking : Booking;
+                IconComponent = darkMode ? Dark_active2 : Active_Booking;
                 break;
               case 'wallet':
-                IconComponent = focused ? Active_Wallet : Wallet;
+                IconComponent = darkMode ? Dark_active3 : Active_Wallet;
                 break;
               case 'profile':
-                IconComponent = focused ? Active_Profile : Profile;
+                IconComponent = darkMode ? Dark_active4 :  Active_Profile;
                 break;
-              default:
-                IconComponent = null;
-                break;
+                default:
+                  IconComponent = Home;
+                  break;
             }
+          }
+          else {
+            switch (route.name) {
+              case 'home':
+                IconComponent = Home;
+                break;
+              
+              case 'transaction':
+                IconComponent = Booking;
+                break;
 
-            return IconComponent ? <IconComponent /> : null;
+              case 'wallet':
+                IconComponent = Wallet;
+                break;
+              
+              case 'profile':
+                IconComponent = Profile;
+                break;
+                default:
+                  IconComponent = Home;
+                  break;
+            }
+          }
+            return <IconComponent />;
           },
         })}
       >

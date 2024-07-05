@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import ThemeContext from '../../theme/ThemeContext';
 
 const CustomCheckbox = ({ isChecked, onToggle }) => {
+  const { theme,  darkMode } = useContext(ThemeContext);
+
   return (
-    <TouchableOpacity style={styles.checkboxContainer} onPress={onToggle}>
-      <Text style={[styles.checkbox, isChecked && styles.checked]}>{isChecked ? '✔️' : ''}</Text>
+    <TouchableOpacity style={[styles.checkboxContainer, {borderColor: theme.color}]} onPress={onToggle}>
+      <Text style={[styles.checkbox, isChecked && [styles.checked, {color:theme.color}]]}>{isChecked ? '✔️' : ''}</Text>
     </TouchableOpacity>
   );
 };

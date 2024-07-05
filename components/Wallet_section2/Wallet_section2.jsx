@@ -1,20 +1,22 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from '../../components/Button/Button';
 import semi_circlebar from "../../assets/images/semi_circle.png";
 import { Cabin_700Bold } from '@expo-google-fonts/cabin';
 import { Lato_400Regular } from '@expo-google-fonts/lato';
 import { donet_datas } from '../Data/Data';
 import Common_tabs from '../Tabs/common_tabs';
+import ThemeContext from '../../theme/ThemeContext';
 
 const Wallet_section2 = () => {
+  const { theme,  darkMode } = useContext(ThemeContext);
   const percentages = [80, 80, 60, 0];
   const colors = ['#FF4267', '#0890FE', '#FFAF2A', '#CCCCCC'];
   return (
     <View style={styles.container}>
       <View style={styles.withdraw_row}>
         <View style={styles.row_left}>
-          <Text style={styles.heading}>Withdraw</Text>
+          <Text style={[styles.heading, {color:theme.color}]}>Withdraw</Text>
           <Text style={styles.withdraw_text}>Withdraw Your Money</Text>
         </View>
         <Button buttonText="Withdraw" />
@@ -22,8 +24,8 @@ const Wallet_section2 = () => {
       <View style={styles.donet_container}>
         <Image source={semi_circlebar} alt='image' style={styles.image} resizeMode='contain' />
         <View style={styles.content}>
-          <Text style={styles.price}>$ 1043,23</Text>
-          <Text style={styles.content_text}>Total spending 10% higher than last week</Text>
+          <Text style={[styles.price, {color:theme.color}]}>$ 1043,23</Text>
+          <Text style={[styles.content_text, {color:theme.color3}]}>Total spending 10% higher than last week</Text>
         </View>
       </View>
       <View style={styles.donet_data_container}>
@@ -31,7 +33,7 @@ const Wallet_section2 = () => {
           donet_datas.map((d) => (
             <View style={styles.row} key={d.id}>
               <View style={[styles.circle, { backgroundColor: d.color }]}></View>
-              <Text style={styles.color_text}>{d.text}</Text>
+              <Text style={[styles.color_text, {color:theme.color3}]}>{d.text}</Text>
             </View>
           ))
         }
@@ -45,13 +47,13 @@ export default Wallet_section2;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+
   },
   withdraw_row: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginVertical: 10,
+    marginVertical: 20,
   },
   row_left: {
     flex: 1,
@@ -102,6 +104,7 @@ const styles = StyleSheet.create({
   donet_data_container: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     gap: 20,
     marginTop: 20,
   },

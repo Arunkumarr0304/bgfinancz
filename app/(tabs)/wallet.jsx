@@ -1,27 +1,29 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import Back from "../../assets/images/Back.svg";
+import Dark_back from "../../assets/images/White_back.svg";
 import { Cabin_700Bold } from '@expo-google-fonts/cabin';
 import { router } from "expo-router";
-import Card2 from "../../assets/images/Card2.png";  // Ensure this path is correct
+import Card2 from "../../assets/images/Card2.png";  
 import Wallet_section2 from '../../components/Wallet_section2/Wallet_section2';
 import Common_tabs from '../../components/Tabs/common_tabs';
+import ThemeContext from '../../theme/ThemeContext';
 
 const screenWidth = Dimensions.get('window').width;
 
 const Wallet = () => {
-
+  const { theme,  darkMode } = useContext(ThemeContext);
   const back = () => {
     router.push('home');
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor:theme.background}]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={back}>
-          <Back />
+         {darkMode? <Dark_back /> : <Back /> }
         </TouchableOpacity>
-        <Text style={styles.heading}>Wallet</Text>
+        <Text style={[styles.heading, {color:theme.color}]}>Wallet</Text>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.itemContainer}>
@@ -32,7 +34,7 @@ const Wallet = () => {
               <Text style={styles.name_head}>name</Text>
               <Text style={styles.name}>Satoru Gojo</Text>
               <View style={styles.card_row}>
-                <Text style={styles.cardNo}>4756 .... .... 9018</Text>
+                <Text style={styles.cardNo}>4756 <Text style={styles.cardNo_pin}> . . . .   . . . .  </Text>9018</Text>
                 <Text style={styles.expire}>11/24</Text>
               </View>
               <Text style={styles.balance_head}>balance</Text>
@@ -42,7 +44,7 @@ const Wallet = () => {
         </View>
       </View>
       <Wallet_section2 />
-      <Text style={styles.transaction}>transaction</Text>
+      <Text style={[styles.transaction, {color:theme.color}]}>transaction</Text>
       <Common_tabs />
       </ScrollView>
     </View>
@@ -135,6 +137,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato_400Regular',
     color: '#ffffff',
   },
+  cardNo_pin: {
+    fontSize: 22,
+  },
   expire: {
     fontSize: 16,
     lineHeight: 24,
@@ -160,5 +165,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Cabin_700Bold',
     color: '#000000',
     textTransform: 'capitalize',
+    marginTop: 20,
   }
 });

@@ -1,38 +1,45 @@
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image } from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import Back from "../../../assets/images/Back.svg";
+import Dark_back from "../../../assets/images/White_back.svg";
 import { Cabin_700Bold } from '@expo-google-fonts/cabin';
 import Scan from "../../../assets/images/scan.svg";
 import Profile from "../../../assets/images/profile_image.png";
 import { Lato_400Regular } from '@expo-google-fonts/lato';
 import Qr_code from "../../../assets/images/Qr_codeoriginal.png";
+import Dark_Qr_code from "../../../assets/images/dark_qr_code.png";
 import Button from '../../../components/Button/Button';
 import { router, Link } from "expo-router";
+import ThemeContext from '../../../theme/ThemeContext';
 
 const Qrcode = () => {
-
+  const { theme,  darkMode } = useContext(ThemeContext);
   const scan = () => {
     router.push('/Scan/Scan');
   };
-
+  const back = () => {
+    router.push('home');
+  };
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor:theme.background}]}>
       <View style={styles.header}>
         <View style={styles.header_left}>
-        <Back />
-        <Text style={styles.heading}>QR Code</Text>
+        <TouchableOpacity onPress={back}>
+       {darkMode? <Dark_back /> :  <Back />}
+       </TouchableOpacity>
+        <Text style={[styles.heading, {color:theme.color}]}>QR Code</Text>
         </View>
-        <TouchableOpacity style={styles.scan} onPress={scan}>
+        <TouchableOpacity style={[styles.scan, {backgroundColor:theme.background2}]} onPress={scan}>
           <Scan width={24} height={24} />
         </TouchableOpacity>
       </View>
-      <View style={styles.profile_row}>
+      <View style={[styles.profile_row, {borderColor: theme.color3}]}>
         <Image source={Profile} alt='image' style={styles.profile} />
-        <Text style={styles.profile_text}>Satoru Gojo</Text>
+        <Text style={[styles.profile_text, {color:theme.color}]}>Satoru Gojo</Text>
       </View>
-      <Text style={styles.code_text}>Scan This Code To Pay</Text>
+      <Text style={[styles.code_text, {color:theme.color3}]}>Scan This Code To Pay</Text>
       <View style={styles.code_content}>
-        <Image source={Qr_code} alt='image' style={styles.code} />
+       {darkMode?  <Image source={Dark_Qr_code} alt='image' style={styles.code} /> : <Image source={Qr_code} alt='image' style={styles.code} />}
       </View>
       <Button buttonText="scan" onPress={scan} />
     </View>
@@ -80,7 +87,7 @@ const styles = StyleSheet.create({
       borderStyle: 'dashed',
       borderBottomWidth: 1,
       marginHorizontal: 20,
-      paddingBottom: 10,
+      paddingBottom: 15,
     },
     profile: {
       width: 70,
