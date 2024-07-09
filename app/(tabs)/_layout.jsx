@@ -18,7 +18,7 @@ import Dark_active4 from "../../assets/images/dark_active_profile4.svg";
 
 
 const TabBarButton = ({ children, onPress, accessibilityState, title }) => {
-  const { theme,  darkMode } = useContext(ThemeContext);
+  const { theme, darkMode } = useContext(ThemeContext);
 
   const isSelected = accessibilityState.selected;
   return (
@@ -27,11 +27,10 @@ const TabBarButton = ({ children, onPress, accessibilityState, title }) => {
       style={[
         styles.tabButton,
         isSelected ? [styles.activeTabButton] : null,
-      
       ]}
     >
       {children}
-      <Text style={[styles.tabTitle, isSelected ? [styles.activeTabTitle, {color:theme.bordercolor}] : styles.tabTitle]}>
+      <Text style={[styles.tabTitle, isSelected ? [styles.activeTabTitle, { color: theme.bordercolor }] : styles.tabTitle]}>
         {title}
       </Text>
     </TouchableOpacity>
@@ -39,10 +38,10 @@ const TabBarButton = ({ children, onPress, accessibilityState, title }) => {
 };
 
 const TabsLayout = () => {
-  const { theme,  darkMode } = useContext(ThemeContext);
+  const { theme, darkMode } = useContext(ThemeContext);
 
   return (
-<View style={[styles.container, { backgroundColor: theme.background }]}>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
       <Tabs
         screenOptions={({ route }) => ({
           tabBarShowLabel: false,
@@ -54,46 +53,42 @@ const TabsLayout = () => {
           tabBarIcon: ({ focused }) => {
             let IconComponent;
             if (focused) {
-            switch (route.name) {
-              case 'home':
-                IconComponent =  darkMode? Dark_active1 : Active_Home;
-                break;
-              case 'transaction':
-                IconComponent = darkMode ? Dark_active2 : Active_Booking;
-                break;
-              case 'wallet':
-                IconComponent = darkMode ? Dark_active3 : Active_Wallet;
-                break;
-              case 'profile':
-                IconComponent = darkMode ? Dark_active4 :  Active_Profile;
-                break;
+              switch (route.name) {
+                case 'home':
+                  IconComponent = darkMode ? Dark_active1 : Active_Home;
+                  break;
+                case 'transaction':
+                  IconComponent = darkMode ? Dark_active2 : Active_Booking;
+                  break;
+                case 'wallet':
+                  IconComponent = darkMode ? Dark_active3 : Active_Wallet;
+                  break;
+                case 'profile':
+                  IconComponent = darkMode ? Dark_active4 : Active_Profile;
+                  break;
                 default:
                   IconComponent = Home;
                   break;
-            }
-          }
-          else {
-            switch (route.name) {
-              case 'home':
-                IconComponent = Home;
-                break;
-              
-              case 'transaction':
-                IconComponent = Booking;
-                break;
-
-              case 'wallet':
-                IconComponent = Wallet;
-                break;
-              
-              case 'profile':
-                IconComponent = Profile;
-                break;
+              }
+            } else {
+              switch (route.name) {
+                case 'home':
+                  IconComponent = Home;
+                  break;
+                case 'transaction':
+                  IconComponent = Booking;
+                  break;
+                case 'wallet':
+                  IconComponent = Wallet;
+                  break;
+                case 'profile':
+                  IconComponent = Profile;
+                  break;
                 default:
                   IconComponent = Home;
                   break;
+              }
             }
-          }
             return <IconComponent />;
           },
         })}
@@ -104,7 +99,7 @@ const TabsLayout = () => {
             title: 'Home',
           }}
         />
-         <Tabs.Screen
+        <Tabs.Screen
           name="transaction"
           options={{
             title: 'Transaction',
@@ -126,11 +121,11 @@ const TabsLayout = () => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
-    
   },
   tabBar: {
     width: '100%',
@@ -148,12 +143,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 7,
+    paddingTop: 10, 
   },
   tabTitle: {
     fontSize: 12,
     fontFamily: 'Cabin_500Medium',
     color: '#757575',
     textTransform: 'capitalize',
+    paddingTop: 10, 
     paddingBottom: 15,
   },
   activeTabTitle: {

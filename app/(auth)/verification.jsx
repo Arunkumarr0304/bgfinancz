@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, Modal } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, Modal, Keyboard } from 'react-native';
 import React, { useContext, useRef, useState } from 'react';
 import Back from "../../assets/images/Back.svg";
 import Dark_back from "../../assets/images/White_back.svg";
@@ -19,7 +19,7 @@ const Verification = () => {
     const continues = () => {
         setIsModalVisible(true);
     };
-
+   
     const handleOtpChange = (index, value) => {
         if (isNaN(value)) return;
         const newOtp = [...otp];
@@ -27,9 +27,10 @@ const Verification = () => {
         setOtp(newOtp);
         if (value !== '' && index < otp.length - 1) {
             otpInputs.current[index + 1].focus();
+        } else if (index === otp.length - 1 && value !== '') {
+            Keyboard.dismiss();
         }
     };
-
     const handleBackspace = (index, event) => {
         if (event.nativeEvent.key === 'Backspace') {
             const newOtp = [...otp];
@@ -116,6 +117,7 @@ const styles = StyleSheet.create({
     container: {
         paddingTop: 50,
         paddingHorizontal: 20,
+        paddingBottom: 40,
     },
     header: {
         flexDirection: 'row',

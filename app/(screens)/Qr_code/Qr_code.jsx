@@ -14,9 +14,6 @@ import ThemeContext from '../../../theme/ThemeContext';
 
 const Qrcode = () => {
   const { theme,  darkMode } = useContext(ThemeContext);
-  const scan = () => {
-    router.push('/Scan/Scan');
-  };
   const back = () => {
     router.push('home');
   };
@@ -29,7 +26,7 @@ const Qrcode = () => {
        </TouchableOpacity>
         <Text style={[styles.heading, {color:theme.color}]}>QR Code</Text>
         </View>
-        <TouchableOpacity style={[styles.scan, {backgroundColor:theme.background2}]} onPress={scan}>
+        <TouchableOpacity style={[styles.scan, {backgroundColor:theme.background2}]} >
           <Scan width={24} height={24} />
         </TouchableOpacity>
       </View>
@@ -41,7 +38,7 @@ const Qrcode = () => {
       <View style={styles.code_content}>
        {darkMode?  <Image source={Dark_Qr_code} alt='image' style={styles.code} /> : <Image source={Qr_code} alt='image' style={styles.code} />}
       </View>
-      <Button buttonText="scan" onPress={scan} />
+      <Button buttonText="scan" />
     </View>
   )
 }

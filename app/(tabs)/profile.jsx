@@ -40,6 +40,7 @@ const Profile = () => {
        </TouchableOpacity>
           <Text style={[styles.heading, {color: theme.color}]}>Profile</Text>
         </View>
+        <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.image_box}>
           <Image source={Profiles} alt='image' style={styles.image} />
         </View>
@@ -83,6 +84,7 @@ const Profile = () => {
         <Logout />
         <Text style={[styles.logout_text, { color: theme.log }]}>logout</Text>
       </TouchableOpacity>
+      </ScrollView>
       <Modal
         animationType="slide"
         transparent={true}
@@ -110,14 +112,15 @@ const Profile = () => {
 export default Profile;
 
 const styles = StyleSheet.create({
-  container:{
-    paddingVertical: 50,
+  container: {
+    paddingTop: 50,
     paddingHorizontal: 20,
+    flex: 1,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 80,
+    gap: 30,
   },
   heading: {
     fontSize: 24,
@@ -185,6 +188,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    paddingVertical: 10, 
+    paddingHorizontal: 10, 
   },
   row_left: {
     flexDirection: 'row',
@@ -197,15 +202,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato_400Regular',
   },
   switch: {
-    width: 20,
-    maxHeight: 30,
+    width: 50,
   },
   logout: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 10,
-    marginBottom: 65,
+    marginBottom: 45,
     marginTop: 25,
   },
   logout_text: {
@@ -253,5 +257,4 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato_400Regular',
     textAlign: 'center',
   },
-
-})
+});

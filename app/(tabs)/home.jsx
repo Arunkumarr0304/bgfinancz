@@ -43,7 +43,7 @@ const Home = () => {
             <Text style={[styles.name, {color:theme.color}]}>Hi, Satoru Gojo</Text>
           </View>
         </View>
-        <TouchableOpacity style={styles.Notification} onPress={code}>
+        <TouchableOpacity style={[styles.Notification, {backgroundColor: theme.background2}]} onPress={code}>
           <Notification width={24} height={24} />
         </TouchableOpacity>
       </View>
